@@ -14,5 +14,3 @@ build/
 *.jpeg
 *.jpg
 out/
-
-.DS_Store
