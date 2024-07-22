@@ -185,9 +185,37 @@ public class FindElementsTests {
     driver.findElement(By.xpath("//input[contains(@id,'city')]"));
 
 
-
     //? //div[contains(@class,'error')] - этот элемент появляется когда вводим неверные данные
   }
+
+
+  @Test
+  public void siblingsTest() {
+    // Находит все предыдущие элементы относительно ссылки с текстом 'Let the car work'
+    driver.findElement(By.xpath("//a[text()=' Let the car work ']/preceding::*"));
+
+    // Находит второй предыдущий элемент (с учетом ссылок) относительно ссылки с текстом 'Let the car work'
+    driver.findElement(By.xpath("//a[text()=' Let the car work ']/preceding::link[2]"));
+
+    // Находит все последующие элементы относительно ссылки с текстом 'Let the car work'
+    driver.findElement(By.xpath("//a[text()=' Let the car work ']/following::*"));
+
+    // Находит первый предыдущий соседний элемент (тег) относительно ссылки с текстом 'Let the car work'
+    driver.findElement(By.xpath("//a[text()=' Let the car work ']/preceding-sibling::*[1]"));
+  }
+
+  @Test
+  public void siblingsTest2() {
+    // Открывает страницу с указанным URL "https://ticket-service-69443.firebaseapp.com/"
+    driver.get("https://ticket-service-69443.firebaseapp.com/");
+
+    // Находит элемент с текстом 'Berlin City Hall | Events and Tickets' и классом 'mt-3'
+    driver.findElement(By.xpath("//*[@class='mt-3' and text()='Berlin City Hall | Events and Tickets']"));
+
+    // Находит элемент, содержащий класс 'mt-3' и текст 'Berlin City Hall | Events and Tickets'
+    driver.findElement(By.xpath("//span[contains(@class, 'mt-3') and contains(text(), 'Berlin City Hall | Events and Tickets')]"));
+  }
+
 
 
   @AfterMethod
