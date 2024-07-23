@@ -15,5 +15,4 @@ public class HomePageTests extends TestBase {
     System.out.println("Ищем HomeComponent на домашней странице");
     return isElementPresent(By.xpath("//html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/h1[1]"));
   }
-
 }
