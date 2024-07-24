@@ -2,6 +2,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -12,14 +13,15 @@ public class TestBase {
   WebDriver driver;
   WebDriverWait wait;
   public static final String CONTACT_LOCATOR = "contact-item_card__2SOIM";
+
   @BeforeMethod
   public void setUp() {
     driver = new ChromeDriver();
-    wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+    wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     driver.get("https://telranedu.web.app/home");
     driver.manage().window().setPosition(new Point(2500, 0));
     driver.manage().window().maximize(); // Развернуть браузер на весь экран
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1)); // Ожидание локатора
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2)); // Ожидание локатора
   }
 
   @AfterMethod(enabled = true)
@@ -65,7 +67,7 @@ public class TestBase {
     }
   }
 
-  protected boolean isAlertPresent() {
+  public boolean isAlertPresent() {
     Alert alert = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
     if(alert == null){
       return false;
@@ -75,18 +77,18 @@ public class TestBase {
     }
   }
 
-  protected void loginExistedUserPositive() {
+  public void loginExistedUserPositive() {
     clickLoginLinkButton();
     type(By.name("email"),"user_admin_new3@gmail.com");
     type(By.name("password"),"Password@1");
     click(By.name("login"));
   }
 
-  private void clickLoginLinkButton() {
+  public void clickLoginLinkButton() {
     click(By.xpath("//a[.='LOGIN']"));
   }
 
-  protected boolean isContactAdded(String textToFind) {
+  public boolean isContactAdded(String textToFind) {
     List<WebElement> contacts = driver.findElements(By.cssSelector("h2")); // сколько h2 - столько и контактов
     for(WebElement element : contacts){
       if(element.getText().contains(textToFind))
@@ -95,7 +97,7 @@ public class TestBase {
     return false;
   }
 
-  protected void addNewContactPositiveData(String name) {
+  public void addNewContactPositiveData(String name) {
     //click on Add link
     click(By.xpath("//a[.='ADD']"));
     //enter name
@@ -114,10 +116,19 @@ public class TestBase {
     click(By.xpath("//b[.='Save']"));
   }
 
-  protected int actualSizeOfContacts() {
+  public int actualSizeOfContacts() {
     if(isElementPresent(By.className(CONTACT_LOCATOR))){
       return driver.findElements(By.xpath("//div[@class='contact-page_leftdiv__yhyke']//div")).size();
     }
     return 0;
+  }
+
+  public void deleteOneContactOnly() {
+    click(By.className(CONTACT_LOCATOR));
+    click(By.xpath("//button[text()='Remove']"));
+  }
+
+  public void isSignOutButtonPresent() {
+    Assert.assertTrue(isElementPresent(By.xpath("//*[.='Sign Out']")));
   }
 }

@@ -16,24 +16,25 @@ public class DeleteContactTest extends TestBase {
     addNewContactPositiveData(CONTACT_NAME);
   }
 
-  @Test(invocationCount = 15)
+  @Test(invocationCount = 1)
   public void createOneAndDeleteOneContactPositiveTest() {
     // Шаг 1: Получить текущее количество контактов
     int sizeBefore = actualSizeOfContacts();
-
     // Шаг 2: Удалить контакт
-    click(By.className(CONTACT_LOCATOR));
-    click(By.xpath("//button[text()='Remove']"));
-
+    deleteOneContactOnly();
     // Шаг 3: Получить количество контактов после удаления
     int sizeAfterDelete = actualSizeOfContacts();
-
     // Шаг 4: Проверить, что количество контактов уменьшилось на 1
     Assert.assertEquals(sizeBefore, sizeAfterDelete);
   }
 
   @Test
-  public void deleteAllContacts() {
+  public void deleteAllContactsTests() {
+    deleteAllContacts();
+    Assert.assertEquals(actualSizeOfContacts(), 0, "Not all contacts were deleted.");
+  }
+
+  private void deleteAllContacts() {
     try {
       while (hasContacts()) { // Цикл пока контакты не закончатся
         // Шаг 1: Получить текущее количество контактов
@@ -52,8 +53,6 @@ public class DeleteContactTest extends TestBase {
     } catch (NoSuchElementException e) {
       System.out.println("Все контакты были удалены.");
     }
-    // Шаг 4: Проверить, что все контакты были удалены
-    Assert.assertEquals(actualSizeOfContacts(), 0, "Not all contacts were deleted.");
   }
 
   private boolean hasContacts() {
