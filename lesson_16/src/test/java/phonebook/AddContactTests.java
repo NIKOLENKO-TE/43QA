@@ -12,21 +12,21 @@ public class AddContactTests extends TestBase {
 
   @BeforeMethod
   public void precondition() {
-    loginExistedUserPositive();
+    app.getUserHelper().loginExistedUserPositive();
   }
 
   @Test(invocationCount = 5)
   public void addContactPositiveTest() {
-    addNewContactPositiveData(CONTACT_NAME);
+    app.getContactHelper().addNewContactPositiveData(CONTACT_NAME);
     //! Добавляем проверку, что контакт появился
-    Assert.assertTrue(isContactAdded(CONTACT_NAME));
+    Assert.assertTrue(app.getContactHelper().isContactAdded(CONTACT_NAME));
   }
 
   @AfterMethod(enabled = true)
   public void postCondition() {
     //Click in card
-    click(By.xpath(CONTACT_LOCATOR)); // Все карточки имеют такой локатор
+    app.getContactHelper().click(By.xpath(CONTACT_LOCATOR)); // Все карточки имеют такой локатор
     //click on remove button
-    click(By.xpath("//button[.='Remove']"));
+    app.getContactHelper().click(By.xpath("//button[.='Remove']"));
   }
 }

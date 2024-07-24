@@ -8,26 +8,26 @@ public class DeleteContactTest extends TestBase {
 
   @BeforeMethod
   public void precondition() {
-    loginExistedUserPositive();
-    addNewContactPositiveData(CONTACT_NAME);
+    app.getUserHelper().loginExistedUserPositive();
+    app.getContactHelper().addNewContactPositiveData(ContactHelper.CONTACT_NAME);
   }
 
   @Test(invocationCount = 1)
   public void createOneAndDeleteOneContactPositiveTest() {
     // Шаг 1: Получить текущее количество контактов
-    int sizeBefore = actualSizeOfContacts();
+    int sizeBefore = app.getContactHelper().actualSizeOfContacts();
     // Шаг 2: Удалить контакт
-    deleteOneContactOnly();
+    app.getContactHelper().deleteOneContactOnly();
     // Шаг 3: Получить количество контактов после удаления
-    int sizeAfterDelete = actualSizeOfContacts();
+    int sizeAfterDelete = app.getContactHelper().actualSizeOfContacts();
     // Шаг 4: Проверить, что количество контактов уменьшилось на 1
     Assert.assertEquals(sizeBefore, sizeAfterDelete);
   }
 
   @Test
   public void deleteAllContactsTests() {
-    deleteAllContacts();
-    Assert.assertEquals(actualSizeOfContacts(), 0, "Not all contacts were deleted.");
+    app.getContactHelper().deleteAllContacts();
+    Assert.assertEquals(app.getContactHelper().actualSizeOfContacts(), 0, "Not all contacts were deleted.");
   }
 
 }
