@@ -1,3 +1,5 @@
+package phonebook;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,14 +12,16 @@ import java.time.Duration;
 import java.util.List;
 
 public class TestBase {
+  protected static final String CONTACT_NAME = "TestName";
+  private static final String BUTTON_REMOVE = "//button[text()='Remove']";
+  private static final String CONTACT_LOCATOR = "contact-item_card__2SOIM";
   WebDriver driver;
   WebDriverWait wait;
-  public static final String CONTACT_LOCATOR = "contact-item_card__2SOIM";
 
   @BeforeMethod
   public void setUp() {
     driver = new ChromeDriver();
-    wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+    wait = new WebDriverWait(driver, Duration.ofMillis(2000));
     driver.get("https://telranedu.web.app/home");
     driver.manage().window().setPosition(new Point(2500, 0));
     driver.manage().window().maximize(); // Развернуть браузер на весь экран
@@ -78,13 +82,23 @@ public class TestBase {
   }
 
   public void loginExistedUserPositive() {
-    clickLoginLinkButton();
-    type(By.name("email"),"user_admin_new3@gmail.com");
-    type(By.name("password"),"Password@1");
+    clickLoginLink();
+    fillInRegistrationForm(new User()
+        .setEmail("user_admin_new3@gmail.com")
+        .setPassword("Password@1"));
+    clickOnLoginButton();
+  }
+
+  private void fillInRegistrationForm(User user) {
+    type(By.name("email"), user.getEmail());
+    type(By.name("password"), user.getPassword());
+  }
+
+  public void clickOnLoginButton() {
     click(By.name("login"));
   }
 
-  public void clickLoginLinkButton() {
+  public void clickLoginLink() {
     click(By.xpath("//a[.='LOGIN']"));
   }
 
@@ -130,5 +144,31 @@ public class TestBase {
 
   public void isSignOutButtonPresent() {
     Assert.assertTrue(isElementPresent(By.xpath("//*[.='Sign Out']")));
+  }
+
+  protected void deleteAllContacts() {
+    try {
+      while (hasContacts()) { // Цикл пока контакты не закончатся
+        // Шаг 1: Получить текущее количество контактов
+        int contactsBefore = actualSizeOfContacts();
+        // Шаг 2: Выполнить удаление контакта
+        click(By.className(CONTACT_LOCATOR));
+        click(By.xpath(BUTTON_REMOVE));
+        // Шаг 3: Ожидать, пока количество контактов на странице не станет меньше
+        /*
+         * Лямбда-выражение, которое принимает экземпляр WebDriver и возвращает true или false.
+         * WebDriver d - параметр лямбда-выражения, представляющий текущий экземпляр драйвера.
+         * Условие проверяет, уменьшилось ли количество контактов на странице по сравнению с исходным значением contactsBefore
+         * */
+        wait.until((WebDriver d) -> actualSizeOfContacts() < contactsBefore);
+      }
+    } catch (NoSuchElementException e) {
+      System.out.println("Все контакты были удалены.");
+    }
+  }
+
+  private boolean hasContacts() {
+    // Проверьте, нет ли контактов, не дожидаясь долго
+    return isElementPresent(By.className(CONTACT_LOCATOR));
   }
 }
