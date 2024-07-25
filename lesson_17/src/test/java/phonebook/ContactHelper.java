@@ -27,22 +27,26 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void addNewContactPositiveData(String name) {
-    //click on Add link
-    click(By.xpath("//a[.='ADD']"));
-    //enter name
+    clickADDLink();
+    fillAddContactForm(name, "TestLastName", "1234567890", "admin@gmail.com", "Germany, Berlin", "My contact test");
+    clickOnSAVEContactButton();
+  }
+
+  private void fillAddContactForm(String name, String lastName, String phone, String email, String address, String description) {
     type(By.xpath("//input[@placeholder='Name']"), name);
-    //enter lastname
-    type(By.xpath("//input[@placeholder='Last Name']"), "TestLastName");
-    //enter phone
-    type(By.xpath("//input[@placeholder='Phone']"), "1234567890");
-    //enter email
-    type(By.xpath("//input[@placeholder='email']"), "admin@gmail.com");
-    //enter address
-    type(By.xpath("//input[@placeholder='Address']"), "Germany, Berlin");
-    //enter description
-    type(By.xpath("//input[@placeholder='description']"), "My contact test");
-    //click on Save button
+    type(By.xpath("//input[@placeholder='Last Name']"), lastName);
+    type(By.xpath("//input[@placeholder='Phone']"), phone);
+    type(By.xpath("//input[@placeholder='email']"), email);
+    type(By.xpath("//input[@placeholder='Address']"), address);
+    type(By.xpath("//input[@placeholder='description']"), description);
+  }
+
+  public void clickOnSAVEContactButton() {
     click(By.xpath("//b[.='Save']"));
+  }
+
+  public void clickADDLink() {
+    click(By.xpath("//a[.='ADD']"));
   }
 
   public int actualSizeOfContacts() {
