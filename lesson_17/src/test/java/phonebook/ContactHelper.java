@@ -28,17 +28,17 @@ public class ContactHelper extends BaseHelper {
 
   public void addNewContactPositiveData(String name) {
     clickADDLink();
-    fillAddContactForm(name, "TestLastName", "1234567890", "admin@gmail.com", "Germany, Berlin", "My contact test");
+    fillAddContactForm(new Contact(name, "TestLastName", "1234567890", "admin@gmail.com", "Germany, Berlin", "My contact test"));
     clickOnSAVEContactButton();
   }
 
-  private void fillAddContactForm(String name, String lastName, String phone, String email, String address, String description) {
-    type(By.xpath("//input[@placeholder='Name']"), name);
-    type(By.xpath("//input[@placeholder='Last Name']"), lastName);
-    type(By.xpath("//input[@placeholder='Phone']"), phone);
-    type(By.xpath("//input[@placeholder='email']"), email);
-    type(By.xpath("//input[@placeholder='Address']"), address);
-    type(By.xpath("//input[@placeholder='description']"), description);
+  private void fillAddContactForm(Contact contact) {
+    type(By.xpath("//input[@placeholder='Name']"), contact.getName());
+    type(By.xpath("//input[@placeholder='Last Name']"), contact.getLastName());
+    type(By.xpath("//input[@placeholder='Phone']"), contact.getPhone());
+    type(By.xpath("//input[@placeholder='email']"), contact.getEmail());
+    type(By.xpath("//input[@placeholder='Address']"), contact.getAddress());
+    type(By.xpath("//input[@placeholder='description']"), contact.getDescription());
   }
 
   public void clickOnSAVEContactButton() {
