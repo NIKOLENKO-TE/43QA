@@ -28,11 +28,16 @@ public class ContactHelper extends BaseHelper {
 
   public void addNewContactPositiveData(String name) {
     clickADDLink();
-    fillAddContactForm(new Contact(name, "TestLastName", "1234567890", "admin@gmail.com", "Germany, Berlin", "My contact test"));
+    fillAddContactForm(new Contact()
+        .setName(name)
+        .setLastName("TestLastName")
+        .setPhone("1234567890")
+        .setEmail("admin@gmail.com")
+        .setAddress("Germany, Berlin"));
     clickOnSAVEContactButton();
   }
 
-  private void fillAddContactForm(Contact contact) {
+  void fillAddContactForm(Contact contact) {
     type(By.xpath("//input[@placeholder='Name']"), contact.getName());
     type(By.xpath("//input[@placeholder='Last Name']"), contact.getLastName());
     type(By.xpath("//input[@placeholder='Phone']"), contact.getPhone());

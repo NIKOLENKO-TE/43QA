@@ -22,6 +22,18 @@ public class AddContactTests extends TestBase {
     Assert.assertTrue(app.getContactHelper().isContactAdded(CONTACT_NAME));
   }
 
+  @Test
+  public void addContactWithOutDescription(){
+    app.getContactHelper().clickADDLink();
+    app.getContactHelper().fillAddContactForm(new Contact()
+        .setName(CONTACT_NAME)
+        .setLastName("TestLastName")
+        .setPhone("1234567890")
+        .setEmail("admin@gmail.com")
+        .setAddress("Germany, Berlin"));
+    //app.getContactHelper().clickOnSAVEContactButton();
+  }
+
   @AfterMethod(enabled = true)
   public void postCondition() {
     //Click in card
