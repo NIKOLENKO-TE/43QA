@@ -1,12 +1,18 @@
-package phonebook;
+package phonebook_tests;
 
 import org.openqa.selenium.By;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class CreateAccountPositiveTests extends TestBase {
-
-  @Test
+  @BeforeMethod
+  public void ensurePrecondition(){
+    if (!app.getUserHelper().isLoginLinkPresent()) {
+      app.getUserHelper().clickOnSignOutButton();
+    }
+  }
+  @Test(priority = 1)
   public void createAccountPositiveTest() {
 // click on Login link
     app.driver.findElement(By.xpath("//a[.='LOGIN']")).click();
@@ -25,7 +31,7 @@ public class CreateAccountPositiveTests extends TestBase {
     app.getUserHelper().isSignOutButtonPresent();
   }
 
-  @Test
+  @Test(priority = 2)
   public void createAccountPositiveTestRefactor() {
     app.getUserHelper().clickLoginLink();
     app.getUserHelper().type(By.name("email"),"user_admin_new3@gmail.com");
@@ -34,7 +40,7 @@ public class CreateAccountPositiveTests extends TestBase {
     app.getUserHelper().isSignOutButtonPresent();
   }
 
-  @Test
+  @Test(priority = 3)
   public void createExistedAccountNegativeTest() {
     SoftAssert softAssert = new SoftAssert();
     app.getUserHelper().clickLoginLink();

@@ -1,15 +1,17 @@
-package phonebook;
+package phonebook.fw;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import phonebook.core.BaseHelper;
+import phonebook.model.Contact;
 
 import java.util.List;
 
 public class ContactHelper extends BaseHelper {
-  protected static final String CONTACT_NAME = "TestName";
+  public static final String CONTACT_NAME = "TestName";
   private static final String BUTTON_REMOVE = "//button[text()='Remove']";
   private static final String CONTACT_LOCATOR = "contact-item_card__2SOIM";
 
@@ -37,7 +39,7 @@ public class ContactHelper extends BaseHelper {
     clickOnSAVEContactButton();
   }
 
-  void fillAddContactForm(Contact contact) {
+  public void fillAddContactForm(Contact contact) {
     type(By.xpath("//input[@placeholder='Name']"), contact.getName());
     type(By.xpath("//input[@placeholder='Last Name']"), contact.getLastName());
     type(By.xpath("//input[@placeholder='Phone']"), contact.getPhone());
@@ -62,11 +64,15 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void deleteOneContactOnly() {
-    click(By.className(CONTACT_LOCATOR));
-    click(By.xpath("//button[text()='Remove']"));
+    if (isElementPresent(By.className(CONTACT_LOCATOR))) {
+      click(By.className(CONTACT_LOCATOR));
+      click(By.xpath("//button[text()='Remove']"));
+    } else {
+      System.out.println("Contact not found.");
+    }
   }
 
-  protected void deleteAllContacts() {
+  public void deleteAllContacts() {
     try {
       while (hasContacts()) { // Цикл пока контакты не закончатся
         // Шаг 1: Получить текущее количество контактов

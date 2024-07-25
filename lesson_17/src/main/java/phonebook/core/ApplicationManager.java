@@ -1,21 +1,44 @@
-package phonebook;
+package phonebook.core;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.NoSuchDriverException;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import phonebook.fw.ContactHelper;
+import phonebook.fw.HomeHelper;
+import phonebook.fw.UserHelper;
+
 
 import java.time.Duration;
 
 public class ApplicationManager {
-  WebDriver driver;
-  WebDriverWait wait;
-
+  private final String browser;
+  public WebDriver driver;
+  public WebDriverWait wait;
   UserHelper userHelper;
   HomeHelper homeHelper;
   ContactHelper contactHelper;
 
-  protected void init() {
-    driver = new ChromeDriver();
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+  }
+
+  public void init() {
+   // driver = new ChromeDriver();
+
+    if(browser.equalsIgnoreCase("chrome")){
+      driver = new ChromeDriver();
+    } else if(browser.equalsIgnoreCase("firefox")){
+      driver = new FirefoxDriver();
+    }else if(browser.equalsIgnoreCase("edge")) {
+      driver = new EdgeDriver();
+    }else if(browser.equalsIgnoreCase("safari")){
+      driver = new SafariDriver();
+    }
+
     wait = new WebDriverWait(driver, Duration.ofMillis(2000));
     driver.get("https://telranedu.web.app/home");
     driver.manage().window().setPosition(new Point(2500, 0));
@@ -38,7 +61,7 @@ public class ApplicationManager {
     return contactHelper;
   }
 
-  protected void stop() {
+  public void stop() {
     driver.quit();
   }
 }

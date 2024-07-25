@@ -1,4 +1,4 @@
-package phonebook;
+package phonebook.core;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BaseHelper {
-  WebDriver driver;
-  WebDriverWait wait;
+  protected WebDriver driver;
+  protected WebDriverWait wait;
 
   public BaseHelper(WebDriver driver, WebDriverWait wait) {
     this.driver = driver;
@@ -16,7 +16,7 @@ public class BaseHelper {
   }
 
   public boolean isElementPresent(By locator){
-    System.out.println("Проверка есть ли элемент [" + locator + "] на странице");
+    //System.out.println("Проверка есть ли элемент [" + locator + "] на странице");
     try {
       wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
       return true;

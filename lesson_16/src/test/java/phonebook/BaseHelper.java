@@ -16,7 +16,7 @@ public class BaseHelper {
   }
 
   public boolean isElementPresent(By locator){
-    System.out.println("Проверка есть ли элемент [" + locator + "] на странице");
+   // System.out.println("Проверка есть ли элемент [" + locator + "] на странице");
     try {
       wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
       return true;

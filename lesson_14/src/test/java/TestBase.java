@@ -25,7 +25,7 @@ public class TestBase {
   }
 
   public boolean isElementPresent(By locator){
-    System.out.println("Проверка есть ли элемент ["+locator+"] на странице");
+   // System.out.println("Проверка есть ли элемент ["+locator+"] на странице");
     return driver.findElements(locator).size()>0;
   }
 }

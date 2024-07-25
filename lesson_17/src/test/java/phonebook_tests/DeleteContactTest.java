@@ -1,13 +1,17 @@
-package phonebook;
+package phonebook_tests;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import phonebook.fw.ContactHelper;
 
 public class DeleteContactTest extends TestBase {
 
   @BeforeMethod
-  public void precondition() {
+  public void ensurePrecondition() {
+    if (!app.getUserHelper().isLoginLinkPresent()) {
+      app.getUserHelper().clickOnSignOutButton();
+    }
     app.getUserHelper().loginExistedUserPositive();
     app.getContactHelper().addNewContactPositiveData(ContactHelper.CONTACT_NAME);
   }
