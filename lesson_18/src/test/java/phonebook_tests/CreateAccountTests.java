@@ -5,13 +5,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class CreateAccountPositiveTests extends TestBase {
+public class CreateAccountTests extends TestBase {
   @BeforeMethod
   public void ensurePrecondition(){
     if (!app.getUserHelper().isLoginLinkPresent()) {
       app.getUserHelper().clickOnSignOutButton();
     }
   }
+
   @Test(priority = 1)
   public void createAccountPositiveTest() {
 // click on Login link
@@ -29,6 +30,7 @@ public class CreateAccountPositiveTests extends TestBase {
     System.out.println("Button 'registration' is pressed and User is registered successfully");
 // Assert that button SignOut is present
     app.getUserHelper().isSignOutButtonPresent();
+
   }
 
   @Test(priority = 2)

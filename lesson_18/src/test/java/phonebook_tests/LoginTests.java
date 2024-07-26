@@ -6,17 +6,12 @@ import phonebook.model.User;
 
 public class LoginTests extends TestBase {
 
-  @BeforeClass
-  public void beforeClass() {
-    System.out.println("*****BeforeClass*****");
-  }
-
   @BeforeMethod
   public void ensurePrecondition() {
-    System.out.println("******BeforeMethod*****");
     if (!app.getUserHelper().isLoginLinkPresent()) {
       app.getUserHelper().clickOnSignOutButton();
     }
+    app.driver.get("https://telranedu.web.app/login");
   }
 
   @Test
@@ -33,14 +28,5 @@ public class LoginTests extends TestBase {
     Assert.assertTrue(app.getUserHelper().isAlertPresent());
   }
 
-  @AfterMethod
-  public void AfterMethod() {
-    System.out.println("******AfterMethod*****");
-  }
-
-  @AfterClass
-  public void AfterClass() {
-    System.out.println("*****AfterClass*****");
-  }
 }
 
