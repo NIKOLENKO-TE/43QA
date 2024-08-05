@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import phonebook.core.BaseHelper;
+import phonebook.data.UserData;
 import phonebook.model.User;
 
 public class UserHelper extends BaseHelper {
@@ -15,8 +16,8 @@ public class UserHelper extends BaseHelper {
   public void loginExistedUserPositive() {
     clickLoginLink();
     fillInRegistrationForm(new User()
-        .setEmail("user_admin_new3222@gmail.com")
-        .setPassword("Password@1"));
+        .setEmail(UserData.EMAIL)
+        .setPassword(UserData.PASSWORD));
     clickOnLoginButton();
   }
 
