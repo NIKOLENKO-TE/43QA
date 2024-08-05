@@ -30,4 +30,6 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>
+    <logger name="io.github.bonigarcia.wdm.WebDriverManager" level="OFF"/>
+    <logger name="org.testng.internal.Utils" level="OFF"/>
 </configuration>

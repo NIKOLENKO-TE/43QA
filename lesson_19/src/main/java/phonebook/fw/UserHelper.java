@@ -15,7 +15,7 @@ public class UserHelper extends BaseHelper {
   public void loginExistedUserPositive() {
     clickLoginLink();
     fillInRegistrationForm(new User()
-        .setEmail("user_admin_new3@gmail.com")
+        .setEmail("user_admin_new3222@gmail.com")
         .setPassword("Password@1"));
     clickOnLoginButton();
   }

@@ -1,7 +1,6 @@
 package phonebook_tests;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -10,6 +9,8 @@ import phonebook.core.ApplicationManager;
 
 import java.lang.reflect.Method;
 
+import static phonebook.core.ApplicationManager.logger;
+
 public class TestBase {
 
   protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", "chrome"));
@@ -17,25 +18,30 @@ public class TestBase {
 
   @BeforeSuite
   public void setUp() {
-    app.logger.info("****************** TESTING IN PROGRESS ******************");
+    logger.info("****************** TESTING IN PROGRESS ******************");
     app.init();
   }
 
   @BeforeMethod
   public void startTest(Method method) {
-    app.logger.info("Test is started: [" + method.getName() +"]");
+    logger.info("Test is started: [" + method.getName() +"]");
   }
 
 
   @AfterMethod
-  public void endTest(Method method) {
-    app.logger.info("Test is ended: [" + method.getName() +"]");
+  public void endTest(Method method, ITestResult result) {
+    if(result.isSuccess()){
+      logger.info("Test is PASSED: ["+ method.getName() +"]");
+    } else {
+      logger.error("Test is FAILD: ["+ method.getName() +"], Screenshot: ["+ app.getUserHelper().takeScreenshot()+"]");
+    }
+    logger.info("Test is ended: [" + method.getName() +"]");
   }
 
   //@AfterMethod(enabled = true)
-  @AfterSuite
+  @AfterSuite(enabled = true)
   public void tearDown() {
     app.stop();
-    app.logger.info("****************** ALL TEST END ******************");
+    logger.info("****************** ALL TEST END ******************");
   }
 }
