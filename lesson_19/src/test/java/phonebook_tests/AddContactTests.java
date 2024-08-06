@@ -79,12 +79,11 @@ public class AddContactTests extends TestBase {
     return list.iterator();
   }
 
-  @Test(dataProvider = "addContactObject")
+  @Test(dataProvider = "addContactString")
   public void addContactStringTest(Contact contact) {
     app.getContactHelper().clickADDLink();
     app.getContactHelper().fillAddContactForm(contact);
     app.getContactHelper().clickOnSAVEContactButton();
     Assert.assertTrue(app.getContactHelper().isContactAdded(contact.getName()));
   }
-
 }
