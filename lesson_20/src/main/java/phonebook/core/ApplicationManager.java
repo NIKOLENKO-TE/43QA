@@ -8,12 +8,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.events.WebDriverListener;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import phonebook.fw.ContactHelper;
 import phonebook.fw.HomeHelper;
 import phonebook.fw.UserHelper;
+import phonebook.utils.MyListener;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -44,6 +47,9 @@ public class ApplicationManager {
     } else if (browser.equalsIgnoreCase("safari")) {
       driver = new SafariDriver();
     }
+
+    WebDriverListener listener = new MyListener();
+    driver = new EventFiringDecorator<>(listener).decorate(driver);
 
     wait = new WebDriverWait(driver, Duration.ofMillis(2000));
     driver.get("https://telranedu.web.app/home");

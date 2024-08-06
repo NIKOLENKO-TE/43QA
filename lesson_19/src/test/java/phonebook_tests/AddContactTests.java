@@ -86,4 +86,7 @@ public class AddContactTests extends TestBase {
     app.getContactHelper().clickOnSAVEContactButton();
     Assert.assertTrue(app.getContactHelper().isContactAdded(contact.getName()));
   }
+
+
+
 }
