@@ -78,4 +78,20 @@ public class AddContactTests extends TestBase {
     app.getContactHelper().clickOnSAVEContactButton();
     Assert.assertTrue(app.getContactHelper().isContactAdded(contact.getName()));
   }
+
+  @Test(dataProvider = "contactValidData", dataProviderClass = DataProviders.class)
+  public void addContactFromScvPositiveTest2(Contact contact) {
+    app.getContactHelper().clickADDLink();
+    app.getContactHelper().fillAddContactForm(contact);
+    app.getContactHelper().clickOnSAVEContactButton();
+    Assert.assertTrue(app.getContactHelper().isContactAdded(contact.getName()));
+  }
+
+  @Test(dataProvider = "contactInValidData", dataProviderClass = DataProviders.class)
+  public void addContactFromScvNegativeTest2(Contact contact) {
+    app.getContactHelper().clickADDLink();
+    app.getContactHelper().fillAddContactForm(contact);
+    app.getContactHelper().clickOnSAVEContactButton();
+    Assert.assertTrue(app.getContactHelper().isAlertPresent());
+  }
 }

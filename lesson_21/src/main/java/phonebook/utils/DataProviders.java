@@ -36,12 +36,12 @@ public class DataProviders {
     list.add(new Object[]{new Contact().setName("Name4").setLastName("LastName4").setPhone("1234567893").setEmail("admin4@gmail.com").setAddress("Germany, Berlin4").setDescription("Description4")});
     return list.iterator();
   }
-  @DataProvider
-  public Iterator<Object[]> addContactFromCsv() throws IOException {
+  @DataProvider(name = "contactDataProvider")
+  public Iterator<Object[]> addContactFromCsv(String fileName) throws IOException {
     // Создаем список для хранения данных для тестов
     List<Object[]> list = new ArrayList<>();
     // Открываем CSV файл для чтения
-    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.csv"));
+    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/" + fileName));
     // Читаем первую строку из файла
     String line = reader.readLine();
     // Обрабатываем каждую строку файла до конца
@@ -64,5 +64,15 @@ public class DataProviders {
     reader.close();
     // Возвращаем итератор для списка объектов
     return list.iterator();
+  }
+
+  @DataProvider(name = "contactValidData")
+  public  Iterator<Object[]> getContactValidData() throws IOException {
+    return addContactFromCsv("contacts.csv");
+  }
+
+  @DataProvider(name = "contactInValidData")
+  public  Iterator<Object[]> getContactInValidData() throws IOException {
+    return addContactFromCsv("contacts_invalid_data.csv");
   }
 }
