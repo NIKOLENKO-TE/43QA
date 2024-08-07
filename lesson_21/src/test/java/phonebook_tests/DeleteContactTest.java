@@ -29,7 +29,7 @@ public class DeleteContactTest extends TestBase {
   }
 
   @Test
-  public void deleteAllContactsTests() {
+  public void deleteAllContactsPositiveTest() {
     app.getContactHelper().deleteAllContacts();
     Assert.assertEquals(app.getContactHelper().actualSizeOfContacts(), 0, "Not all contacts were deleted.");
   }

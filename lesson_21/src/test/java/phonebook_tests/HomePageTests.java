@@ -13,7 +13,7 @@ public class HomePageTests extends TestBase{
   }
 
   @Test
-  public void homePageTest(){
+  public void homePagePositiveTest(){
     Assert.assertTrue(app.getHomeHelper().isHomeComponentPresent());
   }
 }

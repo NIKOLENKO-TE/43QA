@@ -40,7 +40,7 @@ public class AddContactTests extends TestBase {
   }
 
   @Test
-  public void addContactWithOutDescription() {
+  public void addContactWithOutDescriptionPositiveTest() {
     app.getContactHelper().clickADDLink();
     app.getContactHelper().fillAddContactForm(new Contact().setName("TestName").setLastName("TestLastName").setPhone("1234567890").setEmail("admin@gmail.com").setAddress("Germany, Berlin"));
     app.getContactHelper().clickOnSAVEContactButton();
@@ -48,7 +48,7 @@ public class AddContactTests extends TestBase {
   }
 
   @Test
-  public void addContactFromContactData() {
+  public void addContactFromContactDataPositiveTest() {
     app.getContactHelper().clickADDLink();
     app.getContactHelper().fillAddContactForm(new Contact().setName(ContactData.NAME).setLastName(ContactData.LAST_NAME).setPhone(ContactData.PHONE).setEmail(ContactData.EMAIL).setAddress(ContactData.ADDRESS).setDescription(ContactData.DESC));
     app.getContactHelper().clickOnSAVEContactButton();
@@ -56,7 +56,7 @@ public class AddContactTests extends TestBase {
   }
 
   @Test(dataProvider = "addContactString", dataProviderClass = DataProviders.class)
-  public void addNewContactPositiveTestFromDataProvider1(String name, String lastName, String phone, String email, String address, String description) {
+  public void addNewContactFromDataProviderPositiveTest(String name, String lastName, String phone, String email, String address, String description) {
     app.getContactHelper().clickADDLink();
     app.getContactHelper().fillAddContactForm(new Contact().setName(name).setLastName(lastName).setPhone(phone).setEmail(email).setAddress(address).setDescription(description));
     app.getContactHelper().clickOnSAVEContactButton();
@@ -64,7 +64,7 @@ public class AddContactTests extends TestBase {
   }
 
   @Test(dataProvider = "addContactObject", dataProviderClass = DataProviders.class)
-  public void addContactStringTest(Contact contact) {
+  public void addContactStringPositiveTest(Contact contact) {
     app.getContactHelper().clickADDLink();
     app.getContactHelper().fillAddContactForm(contact);
     app.getContactHelper().clickOnSAVEContactButton();
@@ -72,7 +72,7 @@ public class AddContactTests extends TestBase {
   }
 
   @Test(dataProvider = "addContactFromCsv", dataProviderClass = DataProviders.class)
-  public void addContactFromScvTest(Contact contact) {
+  public void addContactFromScvPositiveTest(Contact contact) {
     app.getContactHelper().clickADDLink();
     app.getContactHelper().fillAddContactForm(contact);
     app.getContactHelper().clickOnSAVEContactButton();
