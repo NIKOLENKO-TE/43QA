@@ -2,7 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
   public HomePage(WebDriver driver) {
     super(driver);
   }
@@ -12,8 +12,16 @@ public class HomePage extends BasePage{
 
   public SidePage getBookStore() {
     //click(bookStore);
-    clickWithJs(bookStore,0,500);
+    clickWithJs(bookStore, 0, 500);
     return new SidePage(driver);
   }
 
+
+  @FindBy(css = ".top-card:nth-child(3)")
+  WebElement alertsFrameWindows;
+
+  public SidePage getAlertsFrameWindows() {
+    click(alertsFrameWindows);
+    return new SidePage(driver);
+  }
 }

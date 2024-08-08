@@ -14,4 +14,14 @@ public class SidePage extends BasePage {
     click(login);
     return new LoginPage(driver);
   }
+
+
+//@FindBy(xpath = "//span[contains(text(),'Alerts')]")
+  @FindBy(xpath = "//span[.='Alerts']")
+  WebElement alerts;
+
+  public AlertsPage selectAlerts() {
+    click(alerts);
+    return new AlertsPage(driver);
+  }
 }

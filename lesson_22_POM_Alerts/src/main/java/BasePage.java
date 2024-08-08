@@ -1,7 +1,9 @@
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public abstract class BasePage {
   WebDriver driver;
@@ -30,9 +32,20 @@ public abstract class BasePage {
     }
   }
 
-  protected void clickWithJs(WebElement element, int x, int y) {
+  public void clickWithJs(WebElement element, int x, int y) {
 //  js.executeScript("window.scrollBy(0,500)");
     js.executeScript("window.scrollBy(" + x + "," + y + ")");
     click(element);
+  }
+
+  public void shouldHaveText(WebElement element, String text, int timeout) {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
+    try {
+      wait.until(ExpectedConditions.textToBePresentInElement(element, text));
+    } catch (TimeoutException e) {
+      throw new AssertionError("The text [" + text + "] was not found in the [" + element + "] within [" + timeout +"] milliseconds");
+    }catch (UnhandledAlertException e){
+      throw new AssertionError("No alert present wile waiting for text ["+text+"] in the [" +element.getTagName()+"]");
+    }
   }
 }
