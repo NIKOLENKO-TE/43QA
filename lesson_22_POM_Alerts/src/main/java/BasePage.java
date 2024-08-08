@@ -15,7 +15,7 @@ public abstract class BasePage {
     // PageFactory — это утилита в Selenium WebDriver, которая упрощает инициализацию веб-элементов на странице и поддерживает концепцию Page Object Model (POM)
     // PageFactory инициализирует элементы, помеченные аннотациями в вашем классе страницы
     PageFactory.initElements(driver, this);
-
+    // JavascriptExecutor - позволяет выполнять произвольные JavaScript-код в контексте веб-страницы.
     js = (JavascriptExecutor) driver;
   }
 
@@ -33,7 +33,10 @@ public abstract class BasePage {
   }
 
   public void clickWithJs(WebElement element, int x, int y) {
-//  js.executeScript("window.scrollBy(0,500)");
+    // js.executeScript("window.scrollBy(100,200)");
+    // x - сколько пикселей прокрутить по горизонтали
+    // y - сколько пикселей прокрутить по вертикали
+    //  js.executeScript("window.scrollBy(0,500)");
     js.executeScript("window.scrollBy(" + x + "," + y + ")");
     click(element);
   }
