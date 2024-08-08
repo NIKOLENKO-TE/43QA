@@ -11,7 +11,9 @@ public class HomePage extends BasePage{
   WebElement bookStore;
 
   public SidePage getBookStore() {
-    click(bookStore);
+    //click(bookStore);
+    clickWithJs(bookStore,0,500);
     return new SidePage(driver);
   }
+
 }
