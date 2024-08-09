@@ -10,7 +10,9 @@ public class LoginTests extends TestBase {
 
   @Test
   public void loginPositiveTest() {
-    new LoginPage(driver).enterPersonalData("root", "Qwertyuiop@1").clickOnLoginButton().verifyUserName("root");
-
+    new LoginPage(driver)
+        .enterPersonalData("root", "Qwertyuiop@1")
+        .clickOnLoginButton()
+        .verifyUserName("root");
   }
 }

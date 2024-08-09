@@ -9,5 +9,6 @@
     <modules>
         <module>lesson_21_POM_Maven</module>
         <module>lesson_22_POM_Alerts</module>
+        <module>lesson_23_POM_Select</module>
     </modules>
 </project>

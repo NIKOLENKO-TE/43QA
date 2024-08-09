@@ -1,0 +1,25 @@
+import com.beust.ah.A;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class AlertsTests extends TestBase {
+  @BeforeMethod
+  public void precondition() {
+    new HomePage(driver).getAlertsFrameWindows();
+    new SidePage(driver).selectAlerts().hideAds();
+  }
+
+  @Test
+  public void waitAlertsTests() {
+    new AlertsPage(driver).clickAlertWithTimer();
+  }
+
+  @Test
+  public void alertWithSelectText(){
+    new AlertsPage(driver)
+        .clickOnConfirmButton()
+        .selectResult("OK")
+        .verifyResult("Ok");
+  }
+
+}
