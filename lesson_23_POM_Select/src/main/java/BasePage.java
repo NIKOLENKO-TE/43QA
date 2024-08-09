@@ -3,6 +3,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 
 public abstract class BasePage {
@@ -23,7 +25,10 @@ public abstract class BasePage {
   public void click(WebElement element) {
     element.click();
   }
-
+public void clickWithScroll(WebElement element, int pixelDown){
+    scrollPage(pixelDown);
+    click(element);
+}
   public void type(WebElement element, String text) {
     if (text != null) {
       click(element);
@@ -39,6 +44,20 @@ public abstract class BasePage {
     //  js.executeScript("window.scrollBy(0,500)");
     js.executeScript("window.scrollBy(" + x + "," + y + ")");
     click(element);
+  }
+
+  public static void scrollPage(int pixels) {
+    try {
+      Robot robot = new Robot();
+      // Press and hold the "Page Down" key for scrolling down
+      for (int i = 0; i < pixels / 120; i++) { // 120 pixels is approximately one "Page Down"
+        robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+        robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+        Thread.sleep(100); // Delay to allow the scroll to register
+      }
+    } catch (AWTException | InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   public void shouldHaveText(WebElement element, String text, int timeout) {

@@ -22,4 +22,11 @@ public class AlertsTests extends TestBase {
         .verifyResult("Ok");
   }
 
+  @Test
+  public void sendMessageToAlertTest(){
+    new AlertsPage(driver)
+        .sendMessageToAlert("Hello")
+        .verifyMessage("Hello");
+  }
+
 }
