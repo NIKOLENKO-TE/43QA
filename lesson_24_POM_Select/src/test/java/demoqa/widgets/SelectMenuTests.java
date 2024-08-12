@@ -26,7 +26,13 @@ public class SelectMenuTests extends TestBase {
   }
 
   @Test
-  public void standardMultiSelectTest(){
-    new SelectMenuPage(driver).standardMultiSelectByIndex(0);
+  public void standardMultiSelectByIndexTest(){
+    new SelectMenuPage(driver).standardMultiSelectByIndex(0).verifyByIndex(0);
   }
+
+  @Test
+  public void standardMultiSelectByCarsTest(){
+    new SelectMenuPage(driver).standardMultiSelectByCars(new String[]{"Volvo","Opel", "Saab"});
+  }
+
 }

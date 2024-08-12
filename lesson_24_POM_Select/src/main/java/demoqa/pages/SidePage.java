@@ -43,12 +43,21 @@ public class SidePage extends BasePage {
     return new AlertsPage(driver);
   }
 
+  //************************ 24 урок *****************************
 
   @FindBy(xpath = "//span[.='Select Menu']")
   WebElement selectMenu;
 
   public WidgetsPage selectSelectMenu() {
     clickWithScroll(selectMenu, 500);
+    return new WidgetsPage(driver);
+  }
+
+  @FindBy(xpath = "//span[.='Slider']")
+  WebElement sliderMenu;
+
+  public WidgetsPage selectSliderMenu() {
+    clickWithScroll(sliderMenu, 500);
     return new WidgetsPage(driver);
   }
 }
