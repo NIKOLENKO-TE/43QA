@@ -15,7 +15,6 @@ public class SidePage extends BasePage {
     return new LoginPage(driver);
   }
 
-
   //@FindBy(xpath = "//span[contains(text(),'Alerts')]")
   @FindBy(xpath = "//span[.='Alerts']")
   WebElement alerts;

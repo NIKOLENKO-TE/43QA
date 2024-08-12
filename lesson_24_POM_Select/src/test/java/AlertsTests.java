@@ -28,5 +28,4 @@ public class AlertsTests extends TestBase {
         .sendMessageToAlert("Hello")
         .verifyMessage("Hello");
   }
-
 }

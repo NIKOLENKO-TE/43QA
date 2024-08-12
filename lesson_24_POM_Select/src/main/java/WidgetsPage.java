@@ -10,12 +10,4 @@ public class WidgetsPage extends BasePage {
   }
 
 
-  @FindBy(id = "oldSelectMenu")
-  WebElement oldSelectMenu;
-
-  public WidgetsPage selectOldStyle(String color) {
-    Select select = new Select(oldSelectMenu);
-    select.selectByVisibleText(color);
-    return this;
-  }
 }

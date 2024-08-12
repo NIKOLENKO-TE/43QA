@@ -1,7 +1,7 @@
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class WidgetsPageTests extends TestBase {
+public class SelectMenuTests extends TestBase {
 
   @BeforeMethod
   public void precondition() {
@@ -11,6 +11,11 @@ public class WidgetsPageTests extends TestBase {
 
   @Test
   public void oldStyleSelectMenuTest() {
-    new WidgetsPage(driver).selectOldStyle("Indigo");
+    new SelectMenuPage(driver).selectOldStyle("Indigo");
+  }
+
+  @Test
+  public void multiSelectMenuTest(){
+    new SelectMenuPage(driver).multiSelect(new String[]{"Green","Blue"});
   }
 }
