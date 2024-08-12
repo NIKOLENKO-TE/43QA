@@ -8,7 +8,7 @@
                     <include name=".*Negative.*"/>
                 </methods>
             </class>
-            <class name="phonebook_tests.LoginTests">
+            <class name="phonebook_tests.demoqa.book_store.LoginTests">
                 <methods>
                     <include name=".*Negative.*"/>
                 </methods>
