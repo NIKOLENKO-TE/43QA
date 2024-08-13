@@ -19,6 +19,8 @@ public class InteractionsPage extends BasePage {
 
   public InteractionsPage actionDragMe() {
     pause(500);
+    // Метод perform(): Этот метод фактически выполняет все действия, которые были подготовлены объектом Actions.
+    // Без вызова perform(), действия, которые были подготовлены объектом Actions - не будут выполнены.
     new Actions(driver).dragAndDrop(dragMe, dragHere).perform();
     return this;
   }
