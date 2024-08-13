@@ -17,12 +17,6 @@ public class AlertsPage extends BasePage {
     super(driver);
   }
 
-  public void hideAds() {
-    js.executeScript("document.getElementById('adplus-anchor').style.display='none';");
-    js.executeScript("document.querySelector('footer').style.display='none';");
-  }
-
-
   @FindBy(id = "timerAlertButton")
   WebElement timerAlertButton;
 

@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
     //scrollPage(200);
     //click(bookStore);
     //clickWithJs(bookStore, 0, 500);
-    clickWithScroll(bookStore,200);
+    clickWithScroll(bookStore, 200);
     return new SidePage(driver);
   }
 
@@ -35,6 +35,22 @@ public class HomePage extends BasePage {
 
   public SidePage getWidgets() {
     click(widgets);
+    return new SidePage(driver);
+  }
+
+  @FindBy(css = ".top-card:nth-child(5)")
+  WebElement interactions;
+
+  public SidePage getInteractions() {
+    click(interactions);
+    return new SidePage(driver);
+  }
+
+  @FindBy(css = ".top-card:nth-child(1)")
+  WebElement elements;
+
+  public SidePage getElements() {
+    click(elements);
     return new SidePage(driver);
   }
 }

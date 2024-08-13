@@ -87,4 +87,8 @@ public abstract class BasePage {
       Thread.currentThread().interrupt();
     }
   }
+  public void hideAds() {
+    js.executeScript("document.getElementById('adplus-anchor').style.display='none';");
+    js.executeScript("document.querySelector('footer').style.display='none';");
+  }
 }
