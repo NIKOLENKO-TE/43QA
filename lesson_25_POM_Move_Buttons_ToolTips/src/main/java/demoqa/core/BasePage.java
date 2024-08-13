@@ -79,4 +79,12 @@ public abstract class BasePage {
   public void moveTo(int x, int y) {
     new Actions(driver).moveByOffset(x, y).perform();
   }
+
+  public void pause(long milliseconds) {
+    try {
+      Thread.sleep(milliseconds);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
+  }
 }

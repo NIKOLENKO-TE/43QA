@@ -11,5 +11,6 @@
         <module>lesson_22_POM_Alerts</module>
         <module>lesson_23_POM_Select</module>
         <module>lesson_24_POM_Select</module>
+        <module>lesson_25_POM_Move_Buttons_ToolTips</module>
     </modules>
 </project>

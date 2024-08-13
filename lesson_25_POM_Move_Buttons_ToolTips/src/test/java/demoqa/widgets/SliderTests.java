@@ -1,6 +1,6 @@
 package demoqa.widgets;
 
-import demoqa.TestBase;
+import demoqa.core.TestBase;
 import demoqa.pages.HomePage;
 import demoqa.pages.SidePage;
 import demoqa.pages.SliderPage;
@@ -14,11 +14,11 @@ public class SliderTests extends TestBase {
     new HomePage(driver).getWidgets();
     new SidePage(driver).selectSliderMenu();
   }
-//
-//  @Test
-//  public void moveSliderTest() {
-//    new SliderPage(driver)
-//        .moveSlider(60)
-//        .verifySliderValue(60);
-//  }
+
+  @Test
+  public void moveSliderTest() {
+    new SliderPage(driver)
+        .moveSlider(20);
+       // .verifySliderValue(60);
+  }
 }
