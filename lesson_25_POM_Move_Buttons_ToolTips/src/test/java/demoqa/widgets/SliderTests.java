@@ -18,7 +18,7 @@ public class SliderTests extends TestBase {
   @Test
   public void moveSliderTest() {
     new SliderPage(driver)
-        .moveSlider(20);
-       // .verifySliderValue(60);
+        .moveSlider(60)
+        .verifySliderValue(60);
   }
 }
