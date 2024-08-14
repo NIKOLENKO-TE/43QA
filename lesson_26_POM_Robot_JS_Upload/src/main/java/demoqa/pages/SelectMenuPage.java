@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -38,6 +39,7 @@ public class SelectMenuPage extends BasePage {
         inputSelect.sendKeys(colors[i]);
         inputSelect.sendKeys(Keys.ENTER);
       }
+      inputSelect.sendKeys(Keys.RIGHT);
       click(space);
     }
     return this;

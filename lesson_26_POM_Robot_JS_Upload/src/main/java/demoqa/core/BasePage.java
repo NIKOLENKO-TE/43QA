@@ -1,6 +1,7 @@
 package demoqa.core;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,6 +33,17 @@ public abstract class BasePage {
   public void clickWithScroll(WebElement element, int pixelDown) {
     scrollPage(pixelDown);
     click(element);
+  }
+
+  public void clickRectangle(WebElement element, int x, int y) {
+    Rectangle rectangle = element.getRect();
+
+    int offSetX = rectangle.getWidth() / x;
+    int offSetY = rectangle.getHeight() / y;
+
+    Actions actions = new Actions(driver);
+    actions.moveToElement(element).perform();
+    actions.moveByOffset(-offSetX, -offSetY).click().perform();
   }
 
   public void type(WebElement element, String text) {
@@ -87,8 +99,14 @@ public abstract class BasePage {
       Thread.currentThread().interrupt();
     }
   }
+
   public void hideAds() {
     js.executeScript("document.getElementById('adplus-anchor').style.display='none';");
     js.executeScript("document.querySelector('footer').style.display='none';");
+  }
+
+  public void verifyMessage(WebElement element, String text) {
+    assert element.getText().equals(text);
+    //assert text.equals(element.getText());
   }
 }

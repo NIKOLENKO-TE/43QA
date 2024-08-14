@@ -86,4 +86,28 @@ public class SidePage extends BasePage {
     clickWithScroll(buttonsMenu, 500);
     return new ButtonsPage(driver);
   }
+
+  @FindBy(xpath = "//span[.='Upload and Download']")
+  WebElement uploadMenu;
+
+  public UploadDownloadPage selectUploadMenu() {
+    clickWithScroll(uploadMenu, 500);
+    return new UploadDownloadPage(driver);
+  }
+
+  @FindBy(xpath = "//span[.='Auto Complete']")
+  WebElement autoCompleteMenu;
+
+  public AutoCompletePage selectAutoCompleteMenu() {
+    clickWithScroll(autoCompleteMenu, 500);
+    return new AutoCompletePage(driver);
+  }
+
+  @FindBy(xpath = "//span[.='Text Box']")
+  WebElement textBoxMenu;
+
+  public TextBoxPage selectTextBoxMenu() {
+    clickWithScroll(textBoxMenu, 500);
+    return new TextBoxPage(driver);
+  }
 }

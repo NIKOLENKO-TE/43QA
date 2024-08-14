@@ -7,13 +7,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class TestBase {
   public WebDriver driver;
 
   @BeforeMethod
-  public void init(){
+  public void init() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--disable-search-engine-choice-screen");
     driver = new ChromeDriver(options);
@@ -23,8 +24,27 @@ public class TestBase {
     driver.get("https://demoqa.com/");
   }
 
-  @AfterMethod
-  public void tearDown(){
-    //driver.quit();
+  @AfterMethod(enabled = false)
+  public void tearDown() {
+    String os = System.getProperty("os.name").toLowerCase();
+    try {
+      if (os.contains("mac")) {
+        driver.quit();
+      } else if (os.contains("win")) {
+        driver.quit();
+      }
+    } catch (Exception e) {
+      System.err.println("\033[31m" + "Exception while quitting the WebDriver: " + e.getMessage() + "\033[0m");
+    } finally {
+      driver = null;
+      if (os.contains("win")) {
+        try {
+          new ProcessBuilder("taskkill", "/F", "/IM", "chromedriver.exe", "/T").start();
+        } catch (IOException e) {
+          System.err.println("IOException while trying to kill chromedriver.exe: " + e.getMessage());
+          e.printStackTrace();
+        }
+      }
+    }
   }
 }
