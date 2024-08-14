@@ -21,4 +21,20 @@ public class ButtonsTests extends TestBase {
         .doubleClick()
         .verifyDoubleClickMessage("You have done a double click");
   }
+
+
+  @Test
+  public void rightClickButtonTest() {
+    new ButtonsPage(driver)
+        .rightClickButton()
+        .verifyRightClickMessage("You have done a right click");
+  }
+
+  @Test
+  public void clickDynamicButtonTest() {
+    new ButtonsPage(driver)
+        .clickButton()
+        .verifyDynamicClickMessage("You have done a dynamic click");
+  }
+
 }

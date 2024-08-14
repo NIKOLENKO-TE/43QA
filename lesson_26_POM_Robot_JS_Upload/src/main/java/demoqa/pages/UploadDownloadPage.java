@@ -27,6 +27,15 @@ public class UploadDownloadPage extends BasePage {
       throw new RuntimeException(e);
     }
     robot.delay(1000);
+
+    // Command + Tab
+    if (System.getProperty("os.name").contains("Mac")) {
+      robot.keyPress(KeyEvent.VK_META);
+      robot.keyPress(KeyEvent.VK_TAB);
+      robot.keyRelease(KeyEvent.VK_TAB);
+      robot.keyRelease(KeyEvent.VK_META);
+    }
+
     // вводим текст "Test.txt"
     // Вводим заглавную букву Т
     robot.keyPress(KeyEvent.VK_SHIFT);

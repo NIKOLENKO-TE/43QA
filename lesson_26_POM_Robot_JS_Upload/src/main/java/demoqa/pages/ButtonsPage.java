@@ -26,6 +26,39 @@ public class ButtonsPage extends BasePage {
     verifyMessage(doubleClickMessage,text);
     return this;
   }
+  @FindBy(id = "rightClickBtn")
+  WebElement rightClickBtn;
+
+  public ButtonsPage rightClickButton() {
+    new Actions(driver).contextClick(rightClickBtn).perform();
+    return this;
+  }
+
+  @FindBy(id = "rightClickMessage")
+  WebElement rightClickMessage;
+
+  public ButtonsPage verifyRightClickMessage(String text) {
+    assert rightClickMessage.getText().equals(text);
+    return this;
+  }
+
+
+  @FindBy(xpath = "//button[text()='Click Me']")
+  WebElement clickMeButton;
+
+  public ButtonsPage clickButton() {
+    click(clickMeButton);
+    return this;
+  }
+
+
+  @FindBy(id = "dynamicClickMessage")
+  WebElement dynamicClickMessage;
+
+  public ButtonsPage verifyDynamicClickMessage(String text) {
+    assert dynamicClickMessage.getText().equals(text);
+    return this;
+  }
 
 
 }
