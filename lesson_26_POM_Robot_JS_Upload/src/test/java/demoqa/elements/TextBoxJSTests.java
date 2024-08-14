@@ -17,7 +17,7 @@ public class TextBoxJSTests extends TestBase {
   @Test
   public void JSExecutorTest(){
     new TextBoxPage(driver)
-        .enterDataWithJS("User Name", "email", );
+        .enterDataWithJS("User Name");
   }
 
 }
