@@ -18,16 +18,16 @@ public class PracticeFormPageTests extends TestBase {
   public void PracticeFormTest(){
     new PracticeFormPage(driver)
         .enterPersonalData("Beth", "Gibbons","portishead@gmail.com", "1234567890")
-//        .selectGender("Female")
-//        .chooseDateOfBirth("01 Jan 1965")
-//        .enterSubjects(new String[]{"Math", "English"})
-//        .selectHobbies(new String[]{"Reading", "Music"})
-//        .uploadPicture("C:/Users/PORTISHEAD/Downloads/portishead/Beth.jpeg")
-//        .enterCurrentAddress("Portishead, Bristol, UK")
-//        .selectState("NCR")
-//        .selectCity("Delhi")
-//        .submitForm()
-//        .verifySuccessRegistration("Thanks for submitting the form")
+        .selectGender("Female")
+        .chooseDateOfBirth("01 Jan 1965")
+        .enterSubjects(new String[]{"Math", "English"})
+        .selectHobbies(new String[]{"Reading", "Music"})
+        .uploadPicture("C:/Users/PORTISHEAD/Downloads/portishead/Beth.jpeg")
+        .enterCurrentAddress("Portishead, Bristol, UK")
+        .selectState("NCR")
+        .selectCity("Delhi")
+        .submitForm()
+        .verifySuccessRegistration("Thanks for submitting the form")
     ;
   }
 }
