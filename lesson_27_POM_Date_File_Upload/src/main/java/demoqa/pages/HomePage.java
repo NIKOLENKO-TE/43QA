@@ -53,4 +53,12 @@ public class HomePage extends BasePage {
     click(elements);
     return new SidePage(driver);
   }
+
+  @FindBy(css = ".top-card:nth-child(2)")
+  WebElement forms;
+
+  public SidePage getForms() {
+    click(forms);
+    return new SidePage(driver);
+  }
 }
