@@ -13,5 +13,6 @@
         <module>lesson_24_POM_Select</module>
         <module>lesson_25_POM_Move_Buttons_ToolTips</module>
         <module>lesson_26_POM_Robot_JS_Upload</module>
+        <module>lesson_27_POM_Date_File_Upload</module>
     </modules>
 </project>
