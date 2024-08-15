@@ -110,4 +110,28 @@ public class SidePage extends BasePage {
     clickWithScroll(textBoxMenu, 500);
     return new TextBoxPage(driver);
   }
+
+  @FindBy(xpath = "//span[.='Links']")
+  WebElement linksMenu;
+
+  public LinksPage selectLinksMenu() {
+    clickWithScroll(linksMenu, 500);
+    return new LinksPage(driver);
+  }
+
+  @FindBy(xpath = "//span[.='Broken Links - Images']")
+  WebElement brokenLinksImagesMenu;
+
+  public BrokenLinksImagesPage selectBrokenLinksImagesMenu() {
+    clickWithScroll(brokenLinksImagesMenu, 500);
+    return new BrokenLinksImagesPage(driver);
+  }
+
+  @FindBy(xpath = "//span[.='Practice Form']")
+  WebElement practiceFormMenu;
+
+  public PracticeFormPage selectPracticeFormMenu() {
+    clickWithScroll(practiceFormMenu, 500);
+    return new PracticeFormPage(driver);
+  }
 }

@@ -9,6 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public abstract class BasePage {
@@ -108,5 +112,27 @@ public abstract class BasePage {
   public void verifyMessage(WebElement element, String text) {
     assert element.getText().equals(text);
     //assert text.equals(element.getText());
+  }
+
+  public void verifyLink(String urlToCheck) {
+    try {
+      URL url = new URL(urlToCheck);
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      connection.setConnectTimeout(2000);
+      connection.connect();
+
+      int responseCode = connection.getResponseCode();
+      String responseMessage = connection.getResponseMessage();
+      if (responseCode >= 400) {
+        System.err.println("URL to check [" + urlToCheck + "], response Code: [" + responseCode + "], response Message: [" + responseMessage + "] is BROKEN");
+      } else {
+        System.out.println("URL to check [" + urlToCheck + "], response Code: [" + responseCode + "], response Message: [" + responseMessage + "] is VALID");
+      }
+    } catch (MalformedURLException e) {
+      System.err.println("Error occurred: Malformed URL: [" + urlToCheck + "], error message: [" + e.getMessage() + "]");
+    } catch (IOException e) {
+      System.err.println("Error occurred: [" + e.getMessage() + "] for URL: [" + urlToCheck + "]");
+      throw new RuntimeException(e);
+    }
   }
 }

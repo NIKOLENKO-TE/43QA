@@ -17,7 +17,15 @@ public class TextBoxJSTests extends TestBase {
   @Test
   public void JSExecutorTest(){
     new TextBoxPage(driver)
-        .enterDataWithJS("User Name","user@gmail.com");
+        .enterDataWithJS("User Name","user@gmail.com", "Berlin, Germany")
+        .clickOnSubmitButton()
+        .getInnerTextWithJs()
+        .refreshPageWithJS()
+        .checkPageTitle("Text Box")
+        .checkURLWithJS()
+        .navigateToNewPageWithJS("https://www.google.com/")
+        .generateAlertWithJS("Hello JS Alert")
+    ;
   }
 
 }

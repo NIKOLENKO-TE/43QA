@@ -18,7 +18,7 @@ public class TestBase {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--disable-search-engine-choice-screen");
     driver = new ChromeDriver(options);
-    //driver.manage().window().setPosition(new Point(2500, 0));
+    driver.manage().window().setPosition(new Point(2500, 0));
     driver.manage().window().maximize();
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     driver.get("https://demoqa.com/");
