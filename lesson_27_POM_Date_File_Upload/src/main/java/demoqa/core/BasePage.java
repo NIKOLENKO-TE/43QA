@@ -46,6 +46,7 @@ public abstract class BasePage {
     js.executeScript("window.scrollBy(" + x + "," + y + ")");
     click(element);
   }
+
   public void clickRectangle(WebElement element, int x, int y) {
     Rectangle rectangle = element.getRect();
 
@@ -65,14 +66,6 @@ public abstract class BasePage {
     }
   }
 
-  public void clickWithJs(WebElement element, int x, int y) {
-    // js.executeScript("window.scrollBy(100,200)");
-    // x - сколько пикселей прокрутить по горизонтали
-    // y - сколько пикселей прокрутить по вертикали
-    //  js.executeScript("window.scrollBy(0,500)");
-    js.executeScript("window.scrollBy(" + x + "," + y + ")");
-    click(element);
-  }
 
   public static void scrollPage(int pixels) {
     try {
@@ -121,25 +114,29 @@ public abstract class BasePage {
     //assert text.equals(element.getText());
   }
 
-  public void verifyLink(String urlToCheck) {
+  protected void verifyLink(String urlToCheck) {
     try {
       URL url = new URL(urlToCheck);
+      // Создание подключения с помощью объекта URL
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-      connection.setConnectTimeout(2000);
+      connection.setConnectTimeout(3000);
       connection.connect();
 
+      // Получение кода ответа
       int responseCode = connection.getResponseCode();
+      // Получение заголовка ответа
       String responseMessage = connection.getResponseMessage();
+
+      // Проверка на статус кода
       if (responseCode >= 400) {
-        System.err.println("URL to check [" + urlToCheck + "], response Code: [" + responseCode + "], response Message: [" + responseMessage + "] is BROKEN");
+        System.err.println("URL to check: ["+urlToCheck + "], response code: [" + responseCode + "], response message: [" + responseMessage + "] is a broken link");
       } else {
-        System.out.println("URL to check [" + urlToCheck + "], response Code: [" + responseCode + "], response Message: [" + responseMessage + "] is VALID");
+        System.out.println("URL to check: ["+urlToCheck + "], response code: [" + responseCode + "], response message: [" +  responseMessage + "] is a valid link");
       }
     } catch (MalformedURLException e) {
-      System.err.println("Error occurred: Malformed URL: [" + urlToCheck + "], error message: [" + e.getMessage() + "]");
+      System.err.println("Error: Malformed URL: [" + urlToCheck + "], error message: [" +e.getMessage()+ "]");
     } catch (IOException e) {
       System.err.println("Error occurred: [" + e.getMessage() + "] for URL: [" + urlToCheck + "]");
-      throw new RuntimeException(e);
     }
   }
 }

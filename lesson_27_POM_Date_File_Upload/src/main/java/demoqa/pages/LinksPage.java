@@ -17,9 +17,14 @@ public class LinksPage extends BasePage {
   List<WebElement> allLinks;
 
   public LinksPage checkAllURL() {
+    // Инициализирует пустую строковую переменную с именем URL.
+    // Эта переменная предназначена для хранения текста URL-адреса каждой ссылки, найденной на веб-странице.
     String url = "";
-    System.out.println("Total links in the Page: [" + allLinks.size() + "]");
+
+    System.out.println("Total links on the web page: " + allLinks.size());
+
     Iterator<WebElement> iterator = allLinks.iterator();
+
     while (iterator.hasNext()) {
       url = iterator.next().getText();
       System.out.println(url);
