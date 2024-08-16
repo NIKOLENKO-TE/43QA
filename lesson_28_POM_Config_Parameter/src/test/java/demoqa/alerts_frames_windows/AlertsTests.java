@@ -10,18 +10,18 @@ import org.testng.annotations.Test;
 public class AlertsTests extends TestBase {
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getAlertsFrameWindows();
-    new SidePage(driver).selectAlerts().hideAds();
+    new HomePage(app.driver).getAlertsFrameWindows();
+    new SidePage(app.driver).selectAlerts().hideAds();
   }
 
   @Test
   public void waitAlertsTests() {
-    new AlertsPage(driver).clickAlertWithTimer();
+    new AlertsPage(app.driver).clickAlertWithTimer();
   }
 
   @Test
   public void alertWithSelectText(){
-    new AlertsPage(driver)
+    new AlertsPage(app.driver)
         .clickOnConfirmButton()
         .selectResult("OK")
         .verifyResult("Ok");
@@ -29,7 +29,7 @@ public class AlertsTests extends TestBase {
 
   @Test
   public void sendMessageToAlertTest(){
-    new AlertsPage(driver)
+    new AlertsPage(app.driver)
         .sendMessageToAlert("Hello")
         .verifyMessage("Hello");
   }

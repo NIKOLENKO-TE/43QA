@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 public class AutoCompleteTests extends TestBase {
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getWidgets();
-    new SidePage(driver).selectAutoCompleteMenu().hideAds();
+    new HomePage(app.driver).getWidgets();
+    new SidePage(app.driver).selectAutoCompleteMenu().hideAds();
   }
 
   @Test
   public void autoCompleteTest(){
-    new AutoCompletePage(driver)
+    new AutoCompletePage(app.driver)
         .autoComplete()
         .verifyAutoComplete("Magenta");
   }

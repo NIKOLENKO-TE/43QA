@@ -10,32 +10,32 @@ import org.testng.annotations.Test;
 public class IframeTests extends TestBase {
   @BeforeMethod
   public void precondition(){
-    new HomePage(driver).getAlertsFrameWindows();
-    new SidePage(driver).selectFrames();
+    new HomePage(app.driver).getAlertsFrameWindows();
+    new SidePage(app.driver).selectFrames();
   }
 
   @Test
   public void iframesCalculateTest(){
-    new AlertsPage(driver).getListOfFrames();
+    new AlertsPage(app.driver).getListOfFrames();
   }
 
   @Test
   public void switchToIframeByIndexTest(){
-    new AlertsPage(driver)
+    new AlertsPage(app.driver)
         .switchToIframeByIndex(1)
         .verifyIframeText("This is a sample page");
   }
 
   @Test
   public void switchToIframeByNameTest(){
-    new AlertsPage(driver)
+    new AlertsPage(app.driver)
         .switchToIframeByName("frame1")
         .verifyIframeText("This is a sample page");
   }
 
   @Test
   public void switchToIframeByIdTest(){
-    new AlertsPage(driver)
+    new AlertsPage(app.driver)
         .switchToIframeById()
         .returnToMainContent() // Страница куда встроены все frame
         .verifyMainContentText("There are 2 Iframes in this page");

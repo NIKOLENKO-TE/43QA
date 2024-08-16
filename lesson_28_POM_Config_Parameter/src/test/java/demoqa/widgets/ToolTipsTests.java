@@ -11,13 +11,13 @@ public class ToolTipsTests extends TestBase {
 
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getWidgets();
-    new SidePage(driver).selectToolTipsMenu().hideAds();
+    new HomePage(app.driver).getWidgets();
+    new SidePage(app.driver).selectToolTipsMenu().hideAds();
   }
 
   @Test
   public void toolTipsTest(){
-    new ToolTipsPage(driver)
+    new ToolTipsPage(app.driver)
         .hoverToolTip()
         .verifyToolTipText("You hovered over the Contrary");
   }

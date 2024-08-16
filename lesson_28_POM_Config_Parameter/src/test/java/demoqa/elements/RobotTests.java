@@ -10,20 +10,20 @@ import org.testng.annotations.Test;
 public class RobotTests extends TestBase {
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getElements();
-    new SidePage(driver).selectUploadMenu().hideAds();
+    new HomePage(app.driver).getElements();
+    new SidePage(app.driver).selectUploadMenu().hideAds();
   }
 
   @Test
   public void performKeyEventWithRobotTest(){
-    new UploadDownloadPage(driver)
+    new UploadDownloadPage(app.driver)
         .performKeyEventWithRobot()
         .verifyPath("C:\\fakepath\\Test.txt");
   }
 
   @Test
   public void performMouseEventTests() {
-    new UploadDownloadPage(driver)
+    new UploadDownloadPage(app.driver)
         .preformMouseEvent()
         .verifyPath("C:\\fakepath\\Test.txt");
   }

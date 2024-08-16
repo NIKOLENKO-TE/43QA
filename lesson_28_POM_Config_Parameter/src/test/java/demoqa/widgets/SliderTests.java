@@ -1,7 +1,6 @@
 package demoqa.widgets;
 
 import demoqa.core.TestBase;
-import demoqa.pages.AlertsPage;
 import demoqa.pages.HomePage;
 import demoqa.pages.SidePage;
 import demoqa.pages.SliderPage;
@@ -12,13 +11,13 @@ public class SliderTests extends TestBase {
 
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getWidgets();
-    new SidePage(driver).selectSliderMenu().hideAds();
+    new HomePage(app.driver).getWidgets();
+    new SidePage(app.driver).selectSliderMenu().hideAds();
   }
 
   @Test
   public void moveSliderTest() {
-    new SliderPage(driver)
+    new SliderPage(app.driver)
         .moveSlider(60)
         .verifySliderValue(60);
   }

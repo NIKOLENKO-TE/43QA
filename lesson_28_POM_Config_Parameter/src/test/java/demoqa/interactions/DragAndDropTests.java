@@ -10,20 +10,20 @@ import org.testng.annotations.Test;
 public class DragAndDropTests extends TestBase {
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getInteractions();
-    new SidePage(driver).selectDroppableMenu().hideAds();
+    new HomePage(app.driver).getInteractions();
+    new SidePage(app.driver).selectDroppableMenu().hideAds();
   }
 
   @Test
   public void actionDragMeTest() {
-    new InteractionsPage(driver)
+    new InteractionsPage(app.driver)
         .actionDragMe()
         .verifyText("Dropped!");
   }
 
   @Test
   public void actionDragMeByTest() {
-    new InteractionsPage(driver)
+    new InteractionsPage(app.driver)
         .actionDragMeBy(5,5)
         .verifyText("Dropped!");
   }

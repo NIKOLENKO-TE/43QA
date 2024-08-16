@@ -10,12 +10,12 @@ public class SearchBookTests extends TestBase {
 
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getBookStore();
+    new HomePage(app.driver).getBookStore();
   }
 
   @Test
   public void searchBookTest(){
-    new BookStorePage(driver)
+    new BookStorePage(app.driver)
         .typeInSearchFieldInput("Git")
         .verifyText("Git");
   }

@@ -162,4 +162,5 @@ public abstract class BasePage {
       System.err.println("Error occurred: [" + e.getMessage() + "] for URL: [" + urlToCheck + "]");
     }
   }
+
 }

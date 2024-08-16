@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 public class BrowserWindowsTests extends TestBase {
   @BeforeMethod
   public void precondition(){
-    new HomePage(driver).getAlertsFrameWindows();
-    new SidePage(driver).selectBrowserWindows().hideAds();
+    new HomePage(app.driver).getAlertsFrameWindows();
+    new SidePage(app.driver).selectBrowserWindows().hideAds();
   }
 
   @Test
   public void newTabTest(){
-    new BrowserWindowsPage(driver)
+    new BrowserWindowsPage(app.driver)
         .switchToNextTab(1)
         .verifyTabTitle("sample page");
   }

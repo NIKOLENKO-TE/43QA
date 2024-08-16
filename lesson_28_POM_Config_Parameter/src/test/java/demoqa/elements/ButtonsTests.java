@@ -11,27 +11,27 @@ public class ButtonsTests extends TestBase {
 
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getElements();
-    new SidePage(driver).selectButtonsMenu().hideAds();
+    new HomePage(app.driver).getElements();
+    new SidePage(app.driver).selectButtonsMenu().hideAds();
   }
 
   @Test
   public void doubleClickButtonsTest() {
-    new ButtonsPage(driver)
+    new ButtonsPage(app.driver)
         .doubleClick()
         .verifyDoubleClickMessage("You have done a double click");
   }
 
   @Test
   public void rightClickButtonTest() {
-    new ButtonsPage(driver)
+    new ButtonsPage(app.driver)
         .rightClickButton()
         .verifyRightClickMessage("You have done a right click");
   }
 
   @Test
   public void clickDynamicButtonTest() {
-    new ButtonsPage(driver)
+    new ButtonsPage(app.driver)
         .clickButton()
         .verifyDynamicClickMessage("You have done a dynamic click");
   }

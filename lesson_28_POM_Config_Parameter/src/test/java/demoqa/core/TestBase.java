@@ -1,50 +1,50 @@
 package demoqa.core;
 
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
-import java.io.IOException;
-import java.time.Duration;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class TestBase {
-  public WebDriver driver;
+  protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", "chrome"));
+  Logger logger = LoggerFactory.getLogger(TestBase.class);
+
+  @BeforeSuite
+  public void setUp() {
+    logger.info("****************** TESTING IN PROGRESS ******************");
+    app.startTest();
+  }
 
   @BeforeMethod
-  public void init() {
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--disable-search-engine-choice-screen");
-    driver = new ChromeDriver(options);
-    //driver.manage().window().setPosition(new Point(2500, 0));
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-    driver.get("https://demoqa.com/");
-  }
-
-  @AfterMethod(enabled = false)
-  public void tearDown() {
-    String os = System.getProperty("os.name").toLowerCase();
-    try {
-      if (os.contains("mac")) {
-        driver.quit();
-      } else if (os.contains("win")) {
-        driver.quit();
-      }
-    } catch (Exception e) {
-      System.err.println("\033[31m" + "Exception while quitting the WebDriver: " + e.getMessage() + "\033[0m");
-    } finally {
-      driver = null;
-      if (os.contains("win")) {
-        try {
-          new ProcessBuilder("taskkill", "/F", "/IM", "chromedriver.exe", "/T").start();
-        } catch (IOException e) {
-          System.err.println("IOException while trying to kill chromedriver.exe: " + e.getMessage());
-          e.printStackTrace();
-        }
-      }
+  public void startTest(Method method, Object[] parameters) {
+    if (parameters != null && parameters.length > 0) {
+      logger.info("Test is started: [" + method.getName() + "], with data: " + Arrays.asList(parameters));
+    } else {
+      logger.info("Test is started: [" + method.getName() + "] with no data");
     }
   }
+
+  @AfterMethod
+  public void endTest(Method method, ITestResult result) {
+    if (result.isSuccess()) {
+      logger.info("Test is PASSED: [" + method.getName() + "]");
+    } else {
+      logger.error("Test is FAILED: [" + method.getName() + "]");
+    }
+    logger.info("Test is ended: [" + method.getName() + "]");
+  }
+
+  //@AfterMethod(enabled = true)
+  @AfterSuite(enabled = false)
+  public void tearDown() {
+    app.stopTest();
+    logger.info("****************** ALL TEST END ******************");
+  }
+
 }

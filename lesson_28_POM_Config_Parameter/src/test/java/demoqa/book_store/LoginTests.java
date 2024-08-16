@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 public class LoginTests extends TestBase {
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getBookStore();
-    new SidePage(driver).selectLogin();
+    new HomePage(app.driver).getBookStore();
+    new SidePage(app.driver).selectLogin();
   }
 
   @Test
   public void loginPositiveTest() {
-    new LoginPage(driver)
+    new LoginPage(app.driver)
         .enterPersonalData("root", "Qwertyuiop@1")
         .clickOnLoginButton()
         .verifyUserName("root");

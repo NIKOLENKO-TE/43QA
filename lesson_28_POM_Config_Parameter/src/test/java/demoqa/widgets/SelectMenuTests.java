@@ -11,28 +11,28 @@ public class SelectMenuTests extends TestBase {
 
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getWidgets();
-    new SidePage(driver).selectSelectMenu();
+    new HomePage(app.driver).getWidgets();
+    new SidePage(app.driver).selectSelectMenu();
   }
 
   @Test
   public void oldStyleSelectMenuTest() {
-    new SelectMenuPage(driver).selectOldStyle("Indigo");
+    new SelectMenuPage(app.driver).selectOldStyle("Indigo");
   }
 
   @Test
   public void multiSelectMenuTest(){
-    new SelectMenuPage(driver).multiSelect(new String[]{"Green","Blue"});
+    new SelectMenuPage(app.driver).multiSelect(new String[]{"Green","Blue"});
   }
 
   @Test
   public void standardMultiSelectByIndexTest(){
-    new SelectMenuPage(driver).standardMultiSelectByIndex(0).verifyByIndex(0);
+    new SelectMenuPage(app.driver).standardMultiSelectByIndex(0).verifyByIndex(0);
   }
 
   @Test
   public void standardMultiSelectByCarsTest(){
-    new SelectMenuPage(driver).standardMultiSelectByCars(new String[]{"Volvo","Opel", "Saab"});
+    new SelectMenuPage(app.driver).standardMultiSelectByCars(new String[]{"Volvo","Opel", "Saab"});
   }
 
 }

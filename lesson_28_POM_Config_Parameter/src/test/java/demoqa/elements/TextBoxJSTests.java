@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 public class TextBoxJSTests extends TestBase {
   @BeforeMethod
   public void precondition() {
-    new HomePage(driver).getElements();
-    new SidePage(driver).selectTextBoxMenu().hideAds();
+    new HomePage(app.driver).getElements();
+    new SidePage(app.driver).selectTextBoxMenu().hideAds();
   }
 
   @Test
   public void JSExecutorTest(){
-    new TextBoxPage(driver)
+    new TextBoxPage(app.driver)
         .enterDataWithJS("User Name","user@gmail.com");
   }
 
