@@ -31,7 +31,8 @@ public class TextBoxPage extends BasePage {
   WebElement userEmail;
 
   public TextBoxPage enterPersonalData(String name, String email) {
-    moveTo(0, 200);
+   // moveTo(0, 200);
+    moveToView(userName);
     type(userName, name);
     type(userEmail, email);
     return this;

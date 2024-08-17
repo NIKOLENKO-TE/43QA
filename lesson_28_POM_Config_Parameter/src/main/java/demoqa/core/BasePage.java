@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -36,7 +35,8 @@ public abstract class BasePage {
   }
 
   public void clickWithScroll(WebElement element, int pixelDown) {
-    scrollPage(pixelDown);
+    //scrollPage(pixelDown);
+    moveToView(element);
     click(element);
   }
 
@@ -97,6 +97,11 @@ public abstract class BasePage {
     new Actions(driver).moveByOffset(x, y).perform();
   }
 
+  //TODO
+  public void moveToView(WebElement element) {
+    js.executeScript("arguments[0].scrollIntoView(true);", element);
+  }
+
   public void pause(long milliseconds) {
     try {
       Thread.sleep(milliseconds);
@@ -104,6 +109,7 @@ public abstract class BasePage {
       Thread.currentThread().interrupt();
     }
   }
+
   public void scrollPageDown() {
     try {
       // Создание экземпляра Robot
@@ -120,10 +126,12 @@ public abstract class BasePage {
       e.printStackTrace();
     }
   }
+
   public void hideAds() {
     js.executeScript("document.getElementById('adplus-anchor').style.display='none';");
     js.executeScript("document.querySelector('footer').style.display='none';");
   }
+
   public void clickWithJs(WebElement element, int x, int y) {
     // js.executeScript("window.scrollBy(100,200)");
     // x - сколько пикселей прокрутить по горизонтали
@@ -132,6 +140,7 @@ public abstract class BasePage {
     js.executeScript("window.scrollBy(" + x + "," + y + ")");
     click(element);
   }
+
   public void verifyMessage(WebElement element, String text) {
     assert element.getText().equals(text);
     //assert text.equals(element.getText());
@@ -152,12 +161,12 @@ public abstract class BasePage {
 
       // Проверка на статус кода
       if (responseCode >= 400) {
-        System.err.println("URL to check: ["+urlToCheck + "], response code: [" + responseCode + "], response message: [" + responseMessage + "] is a broken link");
+        System.err.println("URL to check: [" + urlToCheck + "], response code: [" + responseCode + "], response message: [" + responseMessage + "] is a broken link");
       } else {
-        System.out.println("URL to check: ["+urlToCheck + "], response code: [" + responseCode + "], response message: [" +  responseMessage + "] is a valid link");
+        System.out.println("URL to check: [" + urlToCheck + "], response code: [" + responseCode + "], response message: [" + responseMessage + "] is a valid link");
       }
     } catch (MalformedURLException e) {
-      System.err.println("Error: Malformed URL: [" + urlToCheck + "], error message: [" +e.getMessage()+ "]");
+      System.err.println("Error: Malformed URL: [" + urlToCheck + "], error message: [" + e.getMessage() + "]");
     } catch (IOException e) {
       System.err.println("Error occurred: [" + e.getMessage() + "] for URL: [" + urlToCheck + "]");
     }

@@ -5,6 +5,7 @@ import demoqa.pages.HomePage;
 import demoqa.pages.LoginPage;
 import demoqa.pages.SidePage;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
@@ -14,7 +15,7 @@ public class LoginTests extends TestBase {
     new SidePage(app.driver).selectLogin();
   }
 
-  @Test
+  @Test(testName = "Login existing user with positive data")
   public void loginPositiveTest() {
     new LoginPage(app.driver)
         .enterPersonalData("root", "Qwertyuiop@1")

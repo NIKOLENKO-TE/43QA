@@ -17,7 +17,9 @@ public class HomePage extends BasePage {
     //scrollPage(200);
     //click(bookStore);
     //clickWithJs(bookStore, 0, 500);
-    clickWithScroll(bookStore, 200);
+    //clickWithScroll(bookStore, 200);
+    moveToView(bookStore);
+    click(bookStore);
     return new SidePage(driver);
   }
 
