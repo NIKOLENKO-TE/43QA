@@ -25,7 +25,6 @@ public class TextBoxTests extends TestBase {
 
   @Test(dataProviderClass = DataProviders.class, dataProvider = "addNewUserFromCsv")
   public void keyboardEventTest(String name, String email, String address) {
-    homePage = new HomePage(app.driver);
     textBoxPage
         .enterPersonalData(name,email)
         .keyBoardEventAddress(address)

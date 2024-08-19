@@ -1,6 +1,5 @@
 package demoqa.core;
 
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -13,42 +12,41 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class TestBase {
-  protected static WebDriver driver;
-  public static ApplicationManager app = new ApplicationManager(System.getProperty("browser", "chrome"));
+
+  protected static  ApplicationManager app = new ApplicationManager(System.getProperty("browser", "chrome"));
   Logger logger = LoggerFactory.getLogger(TestBase.class);
 
   @BeforeSuite
   public void setUpSuite() {
     logger.info("****************** TEST SUITE STARTING ******************");
-    app.init();
-    driver = app.getDriver();
   }
 
   @BeforeMethod
-  public void setUp(Method method, Object[] parameters) {
-    logger.info("****************** TESTING IN PROGRESS ******************");
+  public void init(Method method, Object[] parameters) {
+    logger.info("****************** ["+method.getName()+"] ******************");
+    app.startTest();
     if (parameters != null && parameters.length > 0) {
       logger.info("Test is started: [" + method.getName() + "], with data: " + Arrays.asList(parameters));
     } else {
-      logger.info("Test is started: [" + method.getName() + "] with no data");
+      logger.info("Test is started: [" + method.getName() + "]");
     }
   }
 
-  @AfterMethod
-  public void tearDown(Method method, ITestResult result) {
+  @AfterMethod(enabled = true)
+  public void tearDown(ITestResult result) {
+    logger.debug("Tearing down test method: " + result.getMethod().getMethodName());  // Отладочные сообщения
+    app.stopTest();
     if (result.isSuccess()) {
-      logger.info("Test is PASSED: [" + method.getName() + "]");
+      logger.info("Test result: PASSED " + result.getMethod().getMethodName());
     } else {
-      logger.error("Test is FAILED: [" + method.getName() + "]");
+      logger.error("Test result: FAILED " + result.getMethod().getMethodName());
     }
+    logger.info("*********************************************");
   }
 
   @AfterSuite
   public void tearDownSuite() {
-    if (app != null) {
-      app.stop();
-      logger.info("****************** TEST SUITE ENDED ******************");
-    }
+     logger.info("****************** TEST SUITE ENDED ******************");
   }
 }
 

@@ -38,6 +38,7 @@ public class ButtonsPage extends BasePage {
   WebElement rightClickMessage;
 
   public ButtonsPage verifyRightClickMessage(String text) {
+    pause(1000);
     assert rightClickMessage.getText().equals(text);
     return this;
   }

@@ -11,18 +11,17 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.time.Duration;
 
 public class ApplicationManager {
   protected String browser;
-  public WebDriver driver;
+ public WebDriver driver;
   Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
   public ApplicationManager(String browser) {
     this.browser = browser;
   }
 
-  public void init() {
+  public void startTest() {
     if (browser.equalsIgnoreCase("chrome")) {
       ChromeOptions options = new ChromeOptions();
       options.addArguments("--disable-search-engine-choice-screen");
@@ -53,33 +52,7 @@ public class ApplicationManager {
     driver.get("https://demoqa.com/");
   }
 
-  protected void stop() {
-    String os = System.getProperty("os.name").toLowerCase();
-    try {
-      if (os.contains("mac")) {
-        driver.quit();
-      } else if (os.contains("win")) {
-        driver.quit();
-      }
-    } catch (Exception e) {
-      System.err.println("\033[31m" + "Exception while quitting the WebDriver: " + e.getMessage() + "\033[0m");
-    } finally {
-      driver = null;
-      if (os.contains("win")) {
-        try {
-          new ProcessBuilder("taskkill", "/F", "/IM", "chromedriver.exe", "/T").start();
-        } catch (IOException e) {
-          System.err.println("IOException while trying to kill chromedriver.exe: " + e.getMessage());
-          e.printStackTrace();
-        }
-      }
-    }
-  }
-  public WebDriver getDriver() {
-    System.out.println("\033[32m" + "Driver: " + driver + "\033[0m");
-    if (driver == null) {
-      throw new IllegalStateException("Driver not initialized. Call init() or initHeadless() first.");
-    }
-    return driver;
+  protected void stopTest() {
+         driver.quit();
   }
 }
