@@ -12,3 +12,5 @@ include 'lesson_20_Listener_Jenkins'
 include 'lesson_21_Jenkins_triggers'
 include 'lesson_21_POM_Maven'
 include 'lesson_22_POM_Alerts'
+include 'lesson_29.2_First_Cucumber_Project'
+
