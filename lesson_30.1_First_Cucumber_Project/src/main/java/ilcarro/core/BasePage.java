@@ -1,5 +1,6 @@
 package ilcarro.core;
 
+import ilcarro.pages.HomePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -43,11 +44,22 @@ public class BasePage {
     try {
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
       wait.until(ExpectedConditions.visibilityOf(element));
-      System.out.println("Element is present: " + element.isDisplayed());
+      //System.out.println("Element is present: " + element.isDisplayed());
       return element.isDisplayed();
     } catch (Exception e) {
-      System.out.println("Element is not present: " + e.getMessage());
+      System.err.println("Element is not present: " + e.getMessage());
       return false;
+    }
+  }
+
+  public void quitBrowser() {
+    driver.quit();
+  }
+  public void pause(long milliseconds) {
+    try {
+      Thread.sleep(milliseconds);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
     }
   }
 }
