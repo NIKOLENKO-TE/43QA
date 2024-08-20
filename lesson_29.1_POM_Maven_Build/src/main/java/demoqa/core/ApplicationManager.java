@@ -53,6 +53,6 @@ public class ApplicationManager {
   }
 
   protected void stopTest() {
-         driver.quit();
+    driver.quit();
   }
 }

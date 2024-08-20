@@ -3,6 +3,7 @@ package ilcarro.core;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,6 +14,7 @@ public class BasePage {
 
   public BasePage(WebDriver driver) {
     this.driver = driver;
+    PageFactory.initElements(driver, this);
   }
 
   public void launchBrowser(){
