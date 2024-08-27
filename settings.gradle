@@ -17,4 +17,5 @@ include 'lesson_30.1_First_Cucumber_Project'
 include 'lesson_30.2_First_Cucumber_Selenide_Project'
 include 'lesson_31_First_Cucumber_Selenide_Project'
 include 'lesson_34_PhonebookAPI'
+include 'lesson_35_PhonebookAPI_httpclient_OkHttp_rest_assured'
 
