@@ -14,19 +14,21 @@ public class ReminderTest extends TestBase {
     app.getReminderHelper().tapOnSaveReminder(); // Шаг 3: Сохранение напоминания
     Assert.assertTrue(app.getMainScreenHelper().isReminderTitlePresent().contains("PORTISHEAD")); // Проверка наличия созданного напоминания
   }
+
   @Test
   public void addReminderWithDatePositiveTest() {
-    app.getMainScreenHelper().tapOnAddReminder();
-    app.getReminderHelper().enterReminderTitle("Holiday");
-    app.getReminderHelper().tapOnDateField();
-    app.getReminderHelper().swipeToMonth("future", "SEP", 1);
-    app.getReminderHelper().selectDate(5);
-    app.getReminderHelper().tapOnYear();
-    app.getReminderHelper().swipeToYear("future", "2025");
-    app.getReminderHelper().tapOnOk();
-    app.getReminderHelper().tapOnSaveReminder();
-    Assert.assertTrue(app.getMainScreenHelper().isReminderDateTimePresent().contains("6/9/2025"));
+    app.getMainScreenHelper().tapOnAddReminder(); // Шаг 1: Нажатие на кнопку добавления напоминания
+    app.getReminderHelper().enterReminderTitle("Holiday"); // Шаг 2: Ввод названия напоминания
+    app.getReminderHelper().tapOnDateField(); // Шаг 3: Открытие поля выбора даты
+    app.getReminderHelper().swipeToMonth("future", "SEP", 1); // Шаг 4: Прокрутка календаря на месяц "Сентябрь"
+    app.getReminderHelper().selectDate(5); // Шаг 5: Выбор дня месяца (5 сентября)
+    app.getReminderHelper().tapOnYear(); // Шаг 6: Нажатие на поле выбора года
+    app.getReminderHelper().swipeToYear("future", "2025"); // Шаг 7: Прокрутка списка лет до 2025 года
+    app.getReminderHelper().tapOnOk(); // Шаг 8: Подтверждение выбора даты и времени
+    app.getReminderHelper().tapOnSaveReminder(); // Шаг 9: Сохранение напоминания
+    Assert.assertTrue(app.getMainScreenHelper().isReminderDateTimePresent().contains("6/9/2025")); // Шаг 10: Проверка наличия созданного напоминания с датой 6 сентября 2025 года
   }
+
   @Test
   public void testInspector() {
     app.getMainScreenHelper().tapOnAddReminderButton(); // Шаг 1: Нажатие на кнопку добавления напоминания
