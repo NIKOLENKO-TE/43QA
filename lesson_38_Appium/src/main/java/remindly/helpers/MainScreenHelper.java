@@ -18,11 +18,19 @@ public class MainScreenHelper extends BaseHelper {
     tap(By.id("add_reminder"));
   }
 
-  public String  isReminderTitlePresent() {
+  public String isTextPresent(By text) {
+    return driver.findElement(text).getText();
+  }
+
+  public void tapOnAddReminder() {
+    tap(By.id("add_reminder"));
+  }
+
+  public String isReminderTitlePresent() {
     return isTextPresent(By.id("recycle_title"));
   }
 
-  private String isTextPresent(By text) {
-    return driver.findElement(text).getText();
+  public String isReminderDateTimePresent() {
+    return isTextPresent(By.id("recycle_date_time"));
   }
 }

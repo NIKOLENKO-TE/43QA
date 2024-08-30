@@ -25,6 +25,14 @@ public class BaseHelper {
   public void tap(By locator) {
     driver.findElement(locator).click();
   }
-
-
+  public static void pause(long milliseconds) {
+    try {
+      Thread.sleep(milliseconds);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
+  }
+  public String isTextPresent(By text) {
+    return driver.findElement(text).getText();
+  }
 }
