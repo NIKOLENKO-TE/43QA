@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.23.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.23.1'
     implementation group: 'org.testng', name: 'testng', version: '7.10.2'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.6'
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.9.2'

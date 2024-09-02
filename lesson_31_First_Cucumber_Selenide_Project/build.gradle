@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'com.codeborne', name: 'selenide', version: '7.4.2'
+    implementation group: 'com.codeborne', name: 'selenide', version: '7.4.0'
     implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.18.1'
     implementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.18.1'
 }
